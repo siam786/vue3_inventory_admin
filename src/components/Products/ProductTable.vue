@@ -43,7 +43,7 @@ onBeforeMount(async () => {
         <tr
           v-for="product in products"
           :key="product.id"
-          class="bg-white border-b dark:bg-cyan-900 hover:bg-gray-50 dark:hover:bg-gray-600"
+          class="bg-white border-b dark:bg-cyan-900 hover:bg-white dark:hover:bg-gray-900"
         >
           <td class="px-6 py-4">{{ product.id }}</td>
           <td
