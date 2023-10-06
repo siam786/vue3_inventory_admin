@@ -19,12 +19,12 @@ onBeforeMount(async () => {
       >
         <tr>
           <th scope="col" class="px-6 py-3">S/L</th>
-          <th scope="col" class="px-6 py-3">Product name</th>
-          <th scope="col" class="px-6 py-3">Price</th>
-          <th scope="col" class="px-6 py-3">Stock</th>
+          <th scope="col" class="px-6 py-3">Title</th>
+          <th scope="col" class="px-6 py-3">Unit Price</th>
+          <th scope="col" class="px-6 py-3">Number of item</th>
           <th scope="col" class="px-6 py-3">Brand</th>
           <th scope="col" class="px-6 py-3">Category</th>
-          <th scope="col" class="px-6 py-3">Action</th>
+          <th scope="col" class="px-6 py-3">View Details</th>
         </tr>
       </thead>
       <tbody>
@@ -36,9 +36,9 @@ onBeforeMount(async () => {
           <td
             class="flex items-center gap-3 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
           >
-            <span>
+            <!-- <span>
               <img class="w-8 h-8 rounded-full" :src="product.thumbnail" alt="" />
-            </span>
+            </span> -->
             {{ product.title }}
           </td>
           <td class="px-6 py-4 text-[#ff7c08] font-semibold">${{ product.price }}</td>
@@ -47,22 +47,11 @@ onBeforeMount(async () => {
           <td class="px-6 py-4 capitalize">{{ product.category }}</td>
           <td class="px-6 py-4">
             <button>
-              <RouterLink :to="{ name: 'singleProduct', params: { id: product.id } }"
-                ><svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="feather feather-eye me-2"
-                >
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                  <circle cx="12" cy="12" r="3"></circle></svg
-              ></RouterLink>
+              <RouterLink :to="{ name: 'singleProduct', params: { id: product.id } }">
+                <button class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+                  View Details
+</button>
+              </RouterLink>
             </button>
           </td>
         </tr>
