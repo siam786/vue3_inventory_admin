@@ -19,12 +19,12 @@ onBeforeMount(async () => {
 <template>
   <div class="relative overflow-x-auto border rounded">
     <!-- loading start -->
-    <div v-if="isLoading" class="flex items-center justify-center">
+    <table v-if="isLoading" class="flex items-center justify-center">
       <button type="button" class="py-1" disabled>
         <svg class="h-5 mr-3 text-white w-150 animate-spin" viewBox="0 0 24 24"></svg>
         <h3 class="text-lg font-bold text-white">Please wait Data Loading...</h3>
       </button>
-    </div>  
+    </table>  
     <!-- loading end -->
     <table v-else class="w-full text-sm text-left text-white dark:text-white">
       <thead class="text-xs text-gray-700 uppercase bg-slate-200 dark:bg-cyan-900 dark:text-white">
