@@ -23,7 +23,7 @@ const navItems = [
       :to="navItem.link"
       class="active:text-red-900 text-white hover:text-[#ffffff] font-inter font-semibold active:bg-red-100 py-2 px-6 flex items-center gap-x-1.5 text-md rounded"
     >
-      <span v-html="navItem.icon"></span>
+      <span v-html="navItem.icon" class="text-red-900 bg-white"></span>
       {{ navItem.name }}
     </RouterLink>
   </li>

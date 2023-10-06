@@ -1,6 +1,6 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
 import MasterLayout from '@/components/MasterLayout.vue'
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
