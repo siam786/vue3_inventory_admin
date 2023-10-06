@@ -5,7 +5,7 @@ The inventory Mangement System
 
 ## Live Link
 
-- [@Live Link](https://app-landing-page-vu3.netlify.app/)
+- [@Live Link](https://vue3-inventory-admin.vercel.app/)
 
 
 ## Screenshots

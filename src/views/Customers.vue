@@ -30,7 +30,7 @@ onBeforeMount(async () => {
       </thead>
       <tbody>
         <tr
-          v-for="user in users"
+          v-for="user in users" :key="user.id"
           class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
         >
           <td class="px-6 py-4">{{ user.id }}</td>
