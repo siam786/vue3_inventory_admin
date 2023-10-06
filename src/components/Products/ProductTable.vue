@@ -1,22 +1,33 @@
 <script setup>
 import axios from 'axios'
+import { onBeforeMount, ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import { onBeforeMount, reactive, ref } from 'vue'
+const isLoading = ref(true)
 const products = ref([])
 onBeforeMount(async () => {
-  axios.get('https://dummyjson.com/products?limit=20').then((res) => {
-    //console.log(res.data.products)
-    products.value = res.data.products
+  setTimeout(() => {
+    isLoading.value = true
+    axios.get('https://dummyjson.com/products?limit=20').then((res) => {
+      //console.log(res.data.products)
+      products.value = res.data.products
+      isLoading.value = false
+    }, 2000)
   })
 })
 </script>
 
 <template>
-  <div class="relative overflow-x-auto bg-red-900 border rounded">
-    <table class="w-full text-sm text-left text-white dark:text-white">
-      <thead
-        class="text-xs text-gray-700 uppercase bg-slate-200 dark:bg-cyan-900 dark:text-white"
-      >
+  <div class="relative overflow-x-auto border rounded">
+    <!-- loading start -->
+    <div v-if="isLoading" class="flex items-center justify-center">
+      <button type="button" class="py-1" disabled>
+        <svg class="h-5 mr-3 text-white w-150 animate-spin" viewBox="0 0 24 24"></svg>
+        <h3 class="text-lg font-bold text-white">Please wait Data Loading...</h3>
+      </button>
+    </div>  
+    <!-- loading end -->
+    <table v-else class="w-full text-sm text-left text-white dark:text-white">
+      <thead class="text-xs text-gray-700 uppercase bg-slate-200 dark:bg-cyan-900 dark:text-white">
         <tr>
           <th scope="col" class="px-6 py-3">S/L</th>
           <th scope="col" class="px-6 py-3">Title</th>
@@ -27,9 +38,11 @@ onBeforeMount(async () => {
           <th scope="col" class="px-6 py-3">View Details</th>
         </tr>
       </thead>
+
       <tbody>
         <tr
-          v-for="product in products" :key="product.id"
+          v-for="product in products"
+          :key="product.id"
           class="bg-white border-b dark:bg-cyan-900 hover:bg-gray-50 dark:hover:bg-gray-600"
         >
           <td class="px-6 py-4">{{ product.id }}</td>
@@ -48,9 +61,11 @@ onBeforeMount(async () => {
           <td class="px-6 py-4 text-white">
             <button>
               <RouterLink :to="{ name: 'singleProduct', params: { id: product.id } }">
-                <button class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+                <button
+                  class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+                >
                   View Details
-</button>
+                </button>
               </RouterLink>
             </button>
           </td>

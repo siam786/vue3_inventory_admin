@@ -1,20 +1,31 @@
 <script setup>
 import axios from 'axios'
-import { useRoute } from 'vue-router'
 import { onBeforeMount, ref } from 'vue'
+import { useRoute } from 'vue-router'
+const isLoading = ref(true)
 const product = ref([])
 const router = useRoute()
 onBeforeMount(() => {
+  isLoading.value = true
   axios.get(`https://dummyjson.com/products/${router.params.id}`).then((res) => {
     //console.log(res.data.products)
     product.value = res.data
+    isLoading.value = false
   })
 })
 </script>
 
 <template>
   <main class="min-h-screen bg-cyan-950">
-    <section class="container py-10 mx-auto">
+    <!-- loading start -->
+    <div v-if="isLoading" class="container py-10 mx-auto text-center">
+      <button type="button" class="py-1" disabled>
+        <svg class="h-5 mr-3 text-white w-150 animate-spin" viewBox="0 0 24 24"></svg>
+        <h3 class="text-lg font-bold text-white">Please wait Data Loading...</h3>
+      </button>
+    </div>
+    <!-- loading end -->
+    <section v-else class="container py-10 mx-auto">
       <div class="grid grid-cols-2 p-8 bg-white rounded">
         <div class="flex items-center justify-center">
           <img :src="product.thumbnail" alt="Product image" class="w-[600px]" />
